@@ -15,8 +15,8 @@ const nextConfig = {
     },
     experimental: {
         serverActions: {
-            allowedOrigins: ['*'],
-            allowedForwardedHosts: ['*'],
+            allowedOrigins: ['https://canvas.instructure.com'],
+            allowedForwardedHosts: ['https://canvas.instructure.com'],
         }
     }
 };
