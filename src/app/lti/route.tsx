@@ -1,12 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 
+/**
+ * This is the main function that will be called by the LTI tool consumer.
+ * 
+ * It will receive the LTI launch parameters as a POST request.
+ * It will then parse the parameters and display them in a simple HTML page.
+ * Request payload content type is application/x-www-form-urlencoded
+ * 
+ * @param request 
+ * @returns 
+ */
 export async function POST(request: NextRequest) {
-    const params = request.nextUrl.searchParams;
+    const dataText = await request.text();
+    const data = new URLSearchParams(dataText);
 
-    const userName = params.get('lis_person_name_full') || 'Unknown User';
-    const contextTitle = params.get('context_title') || 'Unknown Course';
+    const userName = data.get('lis_person_name_full') || 'Unknown User';
+    const contextTitle = data.get('context_title') || 'Unknown Course';
 
-    const paramsObject = Object.fromEntries(params.entries());
+    const paramsObject = Object.fromEntries(data.entries());
     const paramsListHtml = Object.entries(paramsObject).map(([key, value]) => {
         return `<li>${key}: ${value}</li>`;
     }).join('');
