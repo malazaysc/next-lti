@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
-    // This is an endpoint that will be hit by the canvas app.
-    // It will parse the request and send back html with the user's name and course name.    
-    // console.log(request);
     const params = request.nextUrl.searchParams;
 
     const userName = params.get('lis_person_name_full') || 'Unknown User';
