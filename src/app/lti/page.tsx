@@ -1,21 +1,12 @@
 'use client';
-import { useSearchParams  } from "next/navigation"
+import { useSearchParams } from "next/navigation"
+import { Suspense } from 'react'
 
-type LTIProps = {
-    params: any;
-    searchParams: {
-        lis_person_name_full: string;
-        context_title: string;
-    };
-}
-
-export default function LTI() {
+function LTIData() {
     const params = useSearchParams();
-    console.log(params);
     const userName = params.get('lis_person_name_full') || 'Unknown User';
     const contextTitle = params.get('context_title') || 'Unknown Course';
 
-    // const allParams = params.entries();
     const allParams = params.toString();
 
     return (
@@ -25,5 +16,14 @@ export default function LTI() {
             <p>You are accessing this tool from: {contextTitle}.</p>
             <p>Here are all the parameters: {allParams}</p>
         </div>
+    );
+
+}
+
+export default function LTIPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <LTIData />
+        </Suspense>
     );
 }
