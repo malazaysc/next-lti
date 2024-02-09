@@ -12,6 +12,12 @@ const nextConfig = {
                 ]
             }
         ]
+    },
+    experimental: {
+        serverActions: {
+            allowedOrigins: ['*'],
+            allowedForwardedHosts: ['*'],
+        }
     }
 };
 
